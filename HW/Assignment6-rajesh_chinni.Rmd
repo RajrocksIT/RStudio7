@@ -1,0 +1,53 @@
+---
+title: "Assignment6-rajesh_chinni"
+output: html_document
+---
+
+```{r}
+
+smdetails = read.csv('data_poverty.txt', sep = '\t')
+smdetails
+# 1) Pick two variables that we didn't study,
+# I am picking the variables Metropolitan.Residence and SingleFemaleHousehold.
+```
+
+```{r}
+cor(smdetails$Metropolitan.Residence, smdetails$SingleFemaleHousehold)
+# since correlation is not zero, there is linear association between 2 variables Metropolitan.Residence and 
+# SingleFemaleHousehold.
+```
+
+```{r}
+# 2) Plot as scatter-plot for the two variables
+require(lattice)
+xyplot(SingleFemaleHousehold~Metropolitan.Residence, data = smdetails)
+```
+
+```{r}
+# 3)Create the regression model for the variables
+smmodel = lm(SingleFemaleHousehold~Metropolitan.Residence, data = smdetails)
+smmodel
+
+# 4)Write the formula of the model and interpret the model?
+# Therefore, SingleFemaleHousehold =  8.28954  +  0.04628*Metropolitan.Residence
+# m = slope = 0.04628, y = SingleFemaleHousehold, c = 8.28954, x = Metropolitan.Residence, y = mx+c
+# For each additional % point in Metropolitan.Residence rate, we would expect the % SingleFemaleHousehold to be higher # on average by 0.62%. States with no Metropolitan.Residence are expected on average to have 8.28954% of 
+# SingleFemaleHousehold.
+
+
+``` 
+
+```{r}
+# 5) Perform one prediction with the model
+# prediction for 65% Metropolitan.Residence
+8.28954  +  0.04628*65
+# If  65% population of a state live in metropolitan then single females would be 11.29% of that state pouplation.
+```
+
+```{r}
+# 6) Check the significance of the dependent variable (as in how confident we are that the relationship that shows in # the data is not from sampling error)
+anova(smmodel)
+# Answer -  since the p value is below 5%, therefore, we are confident that the prediction will have very less error.
+
+```
+

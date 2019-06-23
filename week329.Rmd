@@ -1,0 +1,32 @@
+---
+title: "notes329"
+output: html_document
+---
+
+```{r}
+# data = read.csv('data_poverty.txt')
+gpdetails = read.csv('data_poverty.txt', sep = '\t')
+gpdetails
+```
+
+```{r}
+summary(data)
+```
+
+```{r}
+require(lattice)
+xyplot(Poverty~Graduates, data = gpdetails)
+```
+
+```{r}
+mymodel = lm(Poverty~Graduates, data = gpdetails)
+mymodel
+anova(mymodel)
+# Therefore, poverty = 64.7810 - o.6212*graduates
+```
+
+```{r}
+# prediction for 75% graduates
+# 64.78 - 0.62*75
+```
+
